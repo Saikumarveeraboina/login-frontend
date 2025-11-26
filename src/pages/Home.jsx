@@ -11,7 +11,7 @@ const Home = () => {
     const fetchUser = async () => {
         try {
             const token = localStorage.getItem("token");
-            const response = await axios.get("https://login-backend-nvf.onrender.com/api/home", {
+            const response = await axios.get("https://login-backend-nvfv.onrender.com/api/home", {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
