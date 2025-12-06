@@ -17,7 +17,7 @@ const Register = () => {
         e.preventDefault();
         console.log("Form data", values);
         try {
-            const response = await axios.post("https://login-backend-nvfv.onrender.com/api/register", values);
+            const response = await axios.post("http://localhost:3000/api/register", values);
             if (response.status === 201) {
                 navigate("/login");
             }
