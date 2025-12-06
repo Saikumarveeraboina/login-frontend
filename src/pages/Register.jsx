@@ -1,4 +1,4 @@
-import React, {use, useState} from "react";
+import React, { useState } from "react";
 import { Link , useNavigate} from "react-router-dom";
 
 import axios from "axios";
@@ -20,6 +20,7 @@ const Register = () => {
             const response = await axios.post("http://localhost:3000/api/register", values);
             if (response.status === 201) {
                 navigate("/login");
+                
             }
             
         }

@@ -11,19 +11,30 @@ const Home = () => {
     const fetchUser = async () => {
         try {
             const token = localStorage.getItem("token");
+            if (!token) {
+                navigate("/login");
+                return;
+            }
             const response = await axios.get("http://localhost:3000/api/home", {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             });
-            if (response.status !== 201) {
+            if (response.status !== 200) {
                 navigate("/login");
             }
 
         } catch (error) {
             console.error("Error fetching user data", error);
+            navigate("/login");
         }
     }
+    
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        navigate("/login");
+    }
+    
     useEffect(() => {
         fetchUser();
     }, []);
@@ -34,8 +45,7 @@ const Home = () => {
                     <h1>Welcome to Saikumar Tech Platform</h1>
                     <p> Your Security is Our First Priority , Thanks for Choosing Us.</p>
                     <div className="home-actions">
-                        <Link to="/login" className="btn btn-primary">Login</Link>
-                        <Link to="/register" className="btn btn-secondary">Register</Link>
+                        <button onClick={handleLogout} className="btn btn-primary">Logout</button>
                     </div>
                 </div>
                 <div className="home-features">
